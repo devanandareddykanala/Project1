@@ -1,0 +1,1021 @@
+type WaterMotorStatus = 
+ variant {
+   Off;
+   On;
+ };
+type WatchmanStatus = 
+ variant {
+   Approved;
+   Pending;
+   Rejected;
+ };
+type WatchmanShift = 
+ record {
+   apartmentId: ApartmentId;
+   endedAt: opt Timestamp;
+   handoverChecklist: ShiftHandoverChecklist;
+   handoverNote: text;
+   id: nat;
+   isNightMode: bool;
+   relievedById: opt UserId;
+   startedAt: Timestamp;
+   watchmanId: UserId;
+ };
+type WatchmanIdType = 
+ variant {
+   Aadhaar;
+   DrivingLicence;
+   Other;
+   Passport;
+   VoterID;
+ };
+type WatchmanFamilyMember = 
+ record {
+   id: text;
+   isActive: bool;
+   name: text;
+   phone: text;
+   watchmanId: text;
+ };
+type WalletEntryType = 
+ variant {
+   Correction;
+   Credit;
+   Debit;
+ };
+type WalletEntry = 
+ record {
+   amount: nat;
+   apartmentId: ApartmentId;
+   approvedBy: vec UserId;
+   correctionNote: opt text;
+   correctionOf: opt nat;
+   createdAt: Timestamp;
+   entryType: WalletEntryType;
+   flatId: opt FlatId;
+   id: nat;
+   isPermanent: bool;
+   purpose: text;
+   status: DebitApprovalStatus;
+   utrNumber: opt text;
+ };
+type VisitorType = 
+ variant {
+   Delivery;
+   Guest;
+   Service;
+   Unknown;
+ };
+type VisitorEntry = 
+ record {
+   apartmentId: ApartmentId;
+   enteredAt: Timestamp;
+   enteredBy: UserId;
+   flatId: opt FlatId;
+   id: nat;
+   note: text;
+   visitorName: text;
+   visitorType: VisitorType;
+ };
+type UserId = nat;
+type User = 
+ record {
+   apartmentId: opt ApartmentId;
+   createdAt: Timestamp;
+   flatId: opt FlatId;
+   id: UserId;
+   isActive: bool;
+   name: text;
+   phone: text;
+   "principal": principal;
+   role: Role;
+ };
+type Timestamp = int;
+type TicketType = 
+ variant {
+   DisputeEscalation;
+   Support;
+ };
+type TicketStatus = 
+ variant {
+   InProgress;
+   Open;
+   Resolved;
+   WaitingForUser;
+ };
+type TicketPriority = 
+ variant {
+   Normal;
+   Urgent;
+ };
+type TicketMessage = 
+ record {
+   attachmentUrl: opt text;
+   authorId: UserId;
+   createdAt: Timestamp;
+   id: nat;
+   isInternal: bool;
+   message: text;
+   ticketId: nat;
+ };
+type TicketCategory = 
+ variant {
+   Account;
+   Billing;
+   Bug;
+   Dispute;
+   Feature;
+   Other;
+   Payment;
+   Technical;
+ };
+type TaskStatus = 
+ variant {
+   Done;
+   Pending;
+ };
+type TaskPriority = 
+ variant {
+   High;
+   Low;
+   Medium;
+ };
+type SupportTicket = 
+ record {
+   apartmentId: opt ApartmentId;
+   assignedTo: opt UserId;
+   category: TicketCategory;
+   createdAt: Timestamp;
+   description: text;
+   id: nat;
+   priority: TicketPriority;
+   sla: SlaMetadata;
+   status: TicketStatus;
+   subject: text;
+   ticketType: TicketType;
+   updatedAt: Timestamp;
+   userId: UserId;
+ };
+type SubscriptionStatus = 
+ variant {
+   Active;
+   GracePeriod;
+   Inactive;
+   Overdue;
+   Trial;
+ };
+type SubscriptionRow = 
+ record {
+   adminUserId: UserId;
+   apartmentId: ApartmentId;
+   apartmentName: text;
+   city: text;
+   dueDate: Timestamp;
+   flatsCount: nat;
+   status: SubscriptionStatus;
+   utrSubmitted: bool;
+ };
+type SlaMetadata = 
+ record {
+   breached: bool;
+   firstResponseAt: opt Timestamp;
+   firstResponseSla: Timestamp;
+   resolutionSla: Timestamp;
+   resolvedAt: opt Timestamp;
+ };
+type ShiftHandoverChecklist = 
+ record {
+   gateChecked: bool;
+   liftChecked: bool;
+   motorChecked: bool;
+ };
+type SOSAlert = 
+ record {
+   alertType: AlertType;
+   apartmentId: ApartmentId;
+   falseAlarmReason: text;
+   flatId: FlatId;
+   id: nat;
+   isFalseAlarm: bool;
+   resolutionNote: text;
+   resolvedAt: opt Timestamp;
+   resolvedBy: opt UserId;
+   respondedAt: opt Timestamp;
+   respondedBy: opt UserId;
+   triggeredAt: Timestamp;
+   triggeredBy: UserId;
+ };
+type Role = 
+ variant {
+   CoFounder;
+   Contractor;
+   Employee;
+   FamilyMember;
+   FlatAdmin;
+   Founder;
+   Freelancer;
+   Guest;
+   RotatingIncharge;
+   SuperAdmin;
+   Watchman;
+   WatchmanFamily;
+ };
+type Result_7 = 
+ variant {
+   err: text;
+   ok: record {
+         code: text;
+         link: text;
+       };
+ };
+type Result_6 = 
+ variant {
+   err: text;
+   ok: record {
+         code: text;
+         expiresAt: int;
+         link: text;
+       };
+ };
+type Result_5 = 
+ variant {
+   err: text;
+   ok: vec SupportTicket;
+ };
+type Result_4 = 
+ variant {
+   err: text;
+   ok: vec TicketMessage;
+ };
+type Result_3 = 
+ variant {
+   err: text;
+   ok: ProfileInfo;
+ };
+type Result_2 = 
+ variant {
+   err: text;
+   ok;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: record {
+         isValid: bool;
+         role: text;
+       };
+ };
+type Result = 
+ variant {
+   err: text;
+   ok: text;
+ };
+type RepeatType = 
+ variant {
+   Daily;
+   Monthly;
+   None;
+   Weekly;
+ };
+type ProfileInfo = 
+ record {
+   apartmentId: text;
+   flatId: opt text;
+   isActive: bool;
+   name: text;
+   role: text;
+   userId: text;
+ };
+type Priority = 
+ variant {
+   Important;
+   Normal;
+   Urgent;
+ };
+type PlatformHealth = 
+ record {
+   activeUsers: nat;
+   cycleBalance: nat;
+   failedLogins: nat;
+   sosCount: nat;
+   uptimePercent: nat;
+ };
+type PendingWatchman = 
+ record {
+   apartmentId: text;
+   docType: WatchmanIdType;
+   docUrl: text;
+   name: text;
+   phone: text;
+   "principal": principal;
+   rejectionReason: opt text;
+   status: WatchmanStatus;
+   submittedAt: int;
+   uploadedAt: int;
+   userId: text;
+ };
+type PaymentStatus = 
+ variant {
+   Pending;
+   Rejected;
+   Verified;
+ };
+type ParkingType = 
+ variant {
+   Bike;
+   Both;
+   Car;
+ };
+type ParkingSlot = 
+ record {
+   apartmentId: ApartmentId;
+   assignedAt: opt Timestamp;
+   assignedTo: opt FlatId;
+   id: nat;
+   slotNumber: text;
+   slotType: ParkingType;
+ };
+type Notice = 
+ record {
+   acknowledgedBy: vec UserId;
+   apartmentId: ApartmentId;
+   content: text;
+   id: nat;
+   postedAt: Timestamp;
+   postedBy: UserId;
+   priority: Priority;
+   title: text;
+ };
+type MoveOutChecklist = 
+ record {
+   completedAt: opt int;
+   flatId: text;
+   initiatedAt: int;
+   items: vec ChecklistEntry;
+ };
+type MaintenancePayment = 
+ record {
+   amount: nat;
+   apartmentId: ApartmentId;
+   correctionNote: opt text;
+   correctionOf: opt nat;
+   createdAt: Timestamp;
+   flatId: FlatId;
+   id: nat;
+   month: nat;
+   screenshotUrl: text;
+   status: PaymentStatus;
+   utrNumber: text;
+   verifiedBy: opt UserId;
+   year: nat;
+ };
+type LiftStatus = 
+ variant {
+   Issue;
+   OK;
+   Offline;
+ };
+type IssueStatus = 
+ variant {
+   InProgress;
+   Open;
+   Resolved;
+ };
+type IssueCategory = 
+ variant {
+   Common;
+   Electrical;
+   Maintenance;
+   Other;
+   Plumbing;
+   Security;
+ };
+type Issue = 
+ record {
+   apartmentId: ApartmentId;
+   assignedTo: opt UserId;
+   category: IssueCategory;
+   createdAt: Timestamp;
+   description: text;
+   flatId: FlatId;
+   id: nat;
+   raisedBy: UserId;
+   resolvedAt: opt Timestamp;
+   status: IssueStatus;
+   title: text;
+   updatedAt: Timestamp;
+ };
+type InchargeRecord = 
+ record {
+   apartmentId: ApartmentId;
+   endDate: opt Timestamp;
+   handoverChecklist: HandoverChecklist;
+   handoverNotes: text;
+   id: nat;
+   isActive: bool;
+   startDate: Timestamp;
+   userId: UserId;
+ };
+type HealthRecordType = 
+ variant {
+   Other;
+   Prescription;
+   Report;
+   Vaccination;
+ };
+type HealthRecord = 
+ record {
+   date: Timestamp;
+   fileUrl: text;
+   id: nat;
+   memberName: text;
+   note: text;
+   principalId: principal;
+   recordType: HealthRecordType;
+   title: text;
+ };
+type HandoverChecklist = 
+ record {
+   gateKeyTransferred: bool;
+   ledgerReviewed: bool;
+   pendingIssuesNoted: bool;
+   upiUpdated: bool;
+ };
+type GuestRecord = 
+ record {
+   createdAt: int;
+   expiresAt: int;
+   flatId: text;
+   id: text;
+   isActive: bool;
+   name: text;
+   phone: text;
+ };
+type GroceryItem = 
+ record {
+   addedAt: Timestamp;
+   id: nat;
+   isPurchased: bool;
+   name: text;
+   principalId: principal;
+   quantity: text;
+   unit: text;
+ };
+type GateStatus = 
+ variant {
+   Closed;
+   Locked;
+   Open;
+ };
+type FlatStatus = 
+ variant {
+   Occupied;
+   Vacant;
+ };
+type FlatId = nat;
+type Flat = 
+ record {
+   apartmentId: ApartmentId;
+   flatNumber: text;
+   id: FlatId;
+   ownerId: opt UserId;
+   status: FlatStatus;
+   tenantId: opt UserId;
+ };
+type FeedbackRecord = 
+ record {
+   feedbackType: text;
+   id: text;
+   message: text;
+   screenshot: opt blob;
+   submittedAt: int;
+   userId: text;
+ };
+type FamilyTask = 
+ record {
+   assignedTo: text;
+   createdAt: Timestamp;
+   description: text;
+   dueDate: opt Timestamp;
+   id: nat;
+   principalId: principal;
+   priority: TaskPriority;
+   status: TaskStatus;
+   title: text;
+ };
+type FamilyReminder = 
+ record {
+   date: Timestamp;
+   id: nat;
+   isActive: bool;
+   principalId: principal;
+   repeatType: RepeatType;
+   time: text;
+   title: text;
+ };
+type FamilyExpenseCategory = 
+ variant {
+   Bills;
+   Entertainment;
+   Food;
+   Grocery;
+   Medical;
+   Other;
+   Transport;
+ };
+type FamilyExpense = 
+ record {
+   amount: nat;
+   category: FamilyExpenseCategory;
+   createdAt: Timestamp;
+   date: Timestamp;
+   description: text;
+   id: nat;
+   principalId: principal;
+ };
+type FamilyContact = 
+ record {
+   id: nat;
+   name: text;
+   note: text;
+   phone: text;
+   principalId: principal;
+   relation: text;
+ };
+type FamilyCalendarEvent = 
+ record {
+   date: Timestamp;
+   description: text;
+   id: nat;
+   principalId: principal;
+   reminder: opt Timestamp;
+   time: text;
+   title: text;
+ };
+type FacilityStatus = 
+ record {
+   apartmentId: ApartmentId;
+   cleaningStatus: CleaningStatus;
+   gateStatus: GateStatus;
+   lastUpdatedAt: Timestamp;
+   lastUpdatedBy: UserId;
+   liftStatus: LiftStatus;
+   waterMotorStatus: WaterMotorStatus;
+ };
+type ExpenseStatus = 
+ variant {
+   Approved;
+   Deducted;
+   Pending;
+ };
+type ExpenseCategory = 
+ variant {
+   Maintenance;
+   Other;
+   Repair;
+   Salary;
+   Utilities;
+ };
+type DocumentVaultEntry = 
+ record {
+   docType: DocumentType;
+   fileUrl: text;
+   id: nat;
+   note: text;
+   principalId: principal;
+   title: text;
+   uploadedAt: Timestamp;
+ };
+type DocumentType = 
+ variant {
+   Aadhaar;
+   Insurance;
+   Other;
+   PAN;
+   Property;
+   Vehicle;
+ };
+type DisputeRecord = 
+ record {
+   category: text;
+   createdAt: int;
+   description: text;
+   flatId: text;
+   id: text;
+   notes: vec DisputeNote;
+   resolution: opt text;
+   resolvedAt: opt int;
+   status: text;
+   tier: nat;
+ };
+type DisputeNote = 
+ record {
+   addedAt: int;
+   author: text;
+   note: text;
+ };
+type DebitApprovalStatus = 
+ variant {
+   Approved;
+   Executed;
+   Pending;
+   Rejected;
+ };
+type ConsentRecord = 
+ record {
+   deviceInfo: text;
+   generalConsent: bool;
+   generalConsentAt: int;
+   phone: text;
+   "principal": principal;
+   watchmanAttendanceConsent: opt bool;
+   watchmanGpsConsent: opt bool;
+   watchmanPhotoIdConsent: opt bool;
+ };
+type CleaningStatus = 
+ variant {
+   Done;
+   Pending;
+ };
+type ChecklistEntry = 
+ record {
+   completed: bool;
+   item: text;
+ };
+type BillSubscription = 
+ record {
+   amount: nat;
+   category: BillCategory;
+   dueDay: nat;
+   id: nat;
+   isActive: bool;
+   name: text;
+   principalId: principal;
+ };
+type BillCategory = 
+ variant {
+   DTH;
+   Electricity;
+   Gas;
+   Internet;
+   Other;
+   Water;
+ };
+type AppFeedback = 
+ record {
+   comment: text;
+   createdAt: Timestamp;
+   id: nat;
+   moduleName: text;
+   rating: nat;
+   userId: UserId;
+ };
+type ApartmentId = nat;
+type ApartmentExpense = 
+ record {
+   amount: nat;
+   apartmentId: ApartmentId;
+   approvedBy: vec UserId;
+   category: ExpenseCategory;
+   createdAt: Timestamp;
+   description: text;
+   id: nat;
+   payee: text;
+   status: ExpenseStatus;
+ };
+type Apartment = 
+ record {
+   address: text;
+   createdAt: Timestamp;
+   id: ApartmentId;
+   inchargeId: opt UserId;
+   name: text;
+   subscriptionStatus: SubscriptionStatus;
+   superAdminId: UserId;
+   upiId: text;
+   upiQrData: text;
+ };
+type AlertType = 
+ variant {
+   Fire;
+   Medical;
+   Other;
+   Safety;
+ };
+service : {
+  acceptHandover: (apartmentId: ApartmentId, newInchargeId: UserId) ->
+   (Result);
+  acknowledgeNotice: (noticeId: nat) -> (Result);
+  addBillSubscription: (name: text, amount: nat, dueDay: nat, category:
+   BillCategory) -> (variant {
+                       err: text;
+                       ok: text;
+                     });
+  addCalendarEvent: (title: text, description: text, date: Timestamp, time:
+   text, reminder: opt Timestamp) -> (variant {
+                                        err: text;
+                                        ok: text;
+                                      });
+  addCorrectionEntry: (originalId: nat, reason: text, correctedAmount:
+   opt nat, note: text) -> (Result);
+  addDisputeNote: (disputeId: text, note: text, evidence: opt blob) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  addDocument: (title: text, docType: DocumentType, note: text, fileUrl:
+   text) -> (variant {
+               err: text;
+               ok: text;
+             });
+  addFamilyContact: (name: text, phone: text, relation: text, note: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  addFamilyExpense: (amount: nat, category: FamilyExpenseCategory,
+   description: text, date: Timestamp) -> (variant {
+                                             err: text;
+                                             ok: text;
+                                           });
+  addFamilyTask: (title: text, description: text, assignedTo: text, dueDate:
+   opt Timestamp, priority: TaskPriority) -> (variant {
+                                                err: text;
+                                                ok: text;
+                                              });
+  addGroceryItem: (name: text, quantity: text, unit: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  addHealthRecord: (memberName: text, recordType: HealthRecordType, title:
+   text, note: text, date: Timestamp, fileUrl: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  addInternalNote: (ticketId: nat, note: text) -> (Result);
+  addMessage: (ticketId: nat, message: text) -> (Result);
+  addReminder: (title: text, date: Timestamp, time: text, repeatType:
+   RepeatType) -> (variant {
+                     err: text;
+                     ok: text;
+                   });
+  addWatchmanFamilyMember: (watchmanId: text, name: text, phone: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  approveDebit: (entryId: nat) -> (Result);
+  approveExpense: (expenseId: nat) -> (Result);
+  approveWatchmanId: (watchmanPrincipal: principal) -> (Result);
+  assignIncharge: (apartmentId: ApartmentId, userId: UserId, startDate:
+   Timestamp) -> (Result);
+  assignParking: (slotId: nat, flatId: FlatId) -> (Result);
+  assignRole: (target: principal, role: Role) -> (Result);
+  completeChecklistItem: (checklistId: text, item: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  completeMovOut: (flatId: text) -> (variant {
+                                       err: text;
+                                       ok;
+                                     });
+  createApartment: (name: text, address: text) -> (Result);
+  createDispute: (flatId: text, category: text, description: text, photo:
+   opt blob) -> (variant {
+                   err: text;
+                   ok: text;
+                 });
+  createExpense: (apartmentId: ApartmentId, amount: nat, category:
+   ExpenseCategory, description: text, payee: text) -> (Result);
+  createFlat: (apartmentId: ApartmentId, flatNumber: text) -> (Result);
+  createGuest: (flatId: text, guestName: text, guestPhone: text,
+   durationDays: nat) -> (variant {
+                            err: text;
+                            ok: text;
+                          });
+  createTicket: (subject: text, description: text, category: TicketCategory,
+   priority: TicketPriority, ticketType: TicketType) -> (Result);
+  createWatchmanInvite: (watchmanName: text, phone: text) -> (Result);
+  deactivateUser: (target: principal) -> (Result);
+  deductExpense: (expenseId: nat) -> (Result);
+  deleteBillSubscription: (id: nat) -> (variant {
+                                          err: text;
+                                          ok: text;
+                                        });
+  deleteCalendarEvent: (id: nat) -> (variant {
+                                       err: text;
+                                       ok: text;
+                                     });
+  deleteDocument: (id: nat) -> (variant {
+                                  err: text;
+                                  ok: text;
+                                });
+  deleteFamilyContact: (id: nat) -> (variant {
+                                       err: text;
+                                       ok: text;
+                                     });
+  deleteFamilyExpense: (id: nat) -> (variant {
+                                       err: text;
+                                       ok: text;
+                                     });
+  deleteFamilyTask: (id: nat) -> (variant {
+                                    err: text;
+                                    ok: text;
+                                  });
+  deleteGroceryItem: (id: nat) -> (variant {
+                                     err: text;
+                                     ok: text;
+                                   });
+  deleteHealthRecord: (id: nat) -> (variant {
+                                      err: text;
+                                      ok: text;
+                                    });
+  deleteReminder: (id: nat) -> (variant {
+                                  err: text;
+                                  ok: text;
+                                });
+  endShift: (shiftId: nat, note: text, checklist: ShiftHandoverChecklist) ->
+   (Result);
+  escalateDispute: (disputeId: text) -> (variant {
+                                           err: text;
+                                           ok;
+                                         });
+  generateFounderInvite: (role: text) -> (Result_7);
+  generateInviteCode: (role: text, flatId: opt text) -> (Result_6);
+  getActiveShift: (apartmentId: ApartmentId) -> (opt WatchmanShift) query;
+  getActiveUpiId: (apartmentId: ApartmentId) ->
+   (opt record {
+          effectiveFrom: int;
+          qrImageUrl: opt text;
+          upiId: text;
+        }) query;
+  getApartment: (apartmentId: ApartmentId) -> (opt Apartment) query;
+  getApartmentCount: () -> (nat) query;
+  getApartmentOverview: () ->
+   (vec
+     record {
+       apartmentId: ApartmentId;
+       city: text;
+       name: text;
+       subscriptionStatus: SubscriptionStatus;
+       superAdminId: UserId;
+     }) query;
+  getApartmentUsers: (apartmentId: ApartmentId) -> (vec User) query;
+  getConsentRecord: (phone: text) -> (opt ConsentRecord) query;
+  getDisputeEscalations: () -> (Result_5) query;
+  getDisputes: (filter: opt text) -> (vec DisputeRecord) query;
+  getExpenses: (apartmentId: ApartmentId) -> (vec ApartmentExpense) query;
+  getFacilityStatus: (apartmentId: ApartmentId) -> (opt FacilityStatus) query;
+  getFeedback: () -> (vec AppFeedback) query;
+  getFlats: (apartmentId: ApartmentId) -> (vec Flat) query;
+  getFounderTeam: () -> (vec ProfileInfo) query;
+  getGuests: (apartmentId: text) -> (vec GuestRecord) query;
+  getInAppFeedback: (filter: opt text) -> (vec FeedbackRecord) query;
+  getInchargeHistory: (apartmentId: ApartmentId) ->
+   (vec InchargeRecord) query;
+  getIssues: (apartmentId: ApartmentId) -> (vec Issue) query;
+  getIssuesByFlat: (flatId: FlatId) -> (vec Issue) query;
+  getMaintenanceForFlat: (flatId: FlatId) -> (vec MaintenancePayment) query;
+  getMoveOutChecklist: (flatId: text) -> (opt MoveOutChecklist) query;
+  getMyMaintenancePayments: () -> (vec MaintenancePayment) query;
+  getMyProfile: () -> (opt User) query;
+  getMyRole: () -> (opt text) query;
+  getNotices: (apartmentId: ApartmentId) -> (vec Notice) query;
+  getNoticesForApartment: (apartmentId: ApartmentId) -> (vec Notice) query;
+  getNoticesForFamily: () -> (vec Notice) query;
+  getOpenTicketCount: () -> (nat) query;
+  getParkingSlots: (apartmentId: ApartmentId) -> (vec ParkingSlot) query;
+  getPaymentsByFlat: (flatId: FlatId) -> (vec MaintenancePayment) query;
+  getPendingPaymentConfirmations: () -> (nat) query;
+  getPendingPayments: (apartmentId: ApartmentId) ->
+   (vec MaintenancePayment) query;
+  getPendingWatchmanApprovals: () -> (vec PendingWatchman) query;
+  getPlatformHealth: () -> (PlatformHealth) query;
+  getSOSLog: (apartmentId: ApartmentId) -> (vec SOSAlert) query;
+  getShiftHistory: (apartmentId: ApartmentId) -> (vec WatchmanShift) query;
+  getSubscriptionTable: () -> (vec SubscriptionRow) query;
+  getSubscriptionsDueThisWeek: () -> (nat) query;
+  getTicketThread: (ticketId: nat) -> (Result_4) query;
+  getTickets: () -> (vec SupportTicket) query;
+  getUnreadNoticeCount: (apartmentId: ApartmentId) -> (nat) query;
+  getVisitorLog: (apartmentId: ApartmentId) -> (vec VisitorEntry) query;
+  getVisitorLogForFlat: (flatId: FlatId) -> (vec VisitorEntry) query;
+  getWalletBalance: (apartmentId: ApartmentId) -> (nat) query;
+  getWalletLedger: (apartmentId: ApartmentId) -> (vec WalletEntry) query;
+  getWalletSummaryForRole: (apartmentId: ApartmentId) ->
+   (record {
+      balance: int;
+      entries: opt vec WalletEntry;
+      totalCollected: int;
+      totalSpent: int;
+    }) query;
+  getWatchmanFamily: (watchmanId: text) -> (vec WatchmanFamilyMember) query;
+  initiateDebit: (apartmentId: ApartmentId, amount: nat, purpose: text) ->
+   (Result);
+  initiateHandover: (apartmentId: ApartmentId, notes: text, checklist:
+   HandoverChecklist) -> (Result);
+  initiateMovIn: (flatId: text, newTenantPhone: text, newTenantName: 
+   text) -> (variant {
+               err: text;
+               ok: text;
+             });
+  initiateMovOut: (flatId: text) -> (variant {
+                                       err: text;
+                                       ok: text;
+                                     });
+  isFounderRegistered: () -> (bool) query;
+  listBillSubscriptions: () -> (vec BillSubscription) query;
+  listCalendarEvents: () -> (vec FamilyCalendarEvent) query;
+  listDocuments: () -> (vec DocumentVaultEntry) query;
+  listFamilyContacts: () -> (vec FamilyContact) query;
+  listFamilyExpenses: () -> (vec FamilyExpense) query;
+  listFamilyTasks: () -> (vec FamilyTask) query;
+  listGroceryItems: () -> (vec GroceryItem) query;
+  listHealthRecords: () -> (vec HealthRecord) query;
+  listReminders: () -> (vec FamilyReminder) query;
+  logVisitor: (flatId: opt FlatId, apartmentId: ApartmentId, name: text,
+   visitorType: VisitorType, note: text) -> (Result);
+  loginWithII: () -> (Result_3);
+  markResolved: (ticketId: nat, resolutionNote: text) -> (Result_2);
+  postNotice: (apartmentId: ApartmentId, title: text, content: text,
+   priority: Priority) -> (Result);
+  raiseIssue: (flatId: FlatId, apartmentId: ApartmentId, title: text,
+   description: text, category: IssueCategory) -> (Result);
+  recordConsent: (phone: text, consentType: text, timestamp: int, deviceInfo:
+   text) -> (variant {
+               err: text;
+               ok;
+             });
+  registerApartment: (name: text, phone: text) -> (Result);
+  registerWithInvite: (code: text, name: text, phone: text) -> (Result);
+  rejectDebit: (debitId: nat, reason: text) -> (Result_2);
+  rejectWatchmanId: (watchmanPrincipal: principal, reason: text) -> (Result);
+  reopenTicket: (ticketId: nat, reason: text) -> (Result_2);
+  resolveDispute: (disputeId: text, resolution: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  resolveSOS: (sosId: nat, note: text, isFalseAlarm: bool, falseAlarmReason:
+   text) -> (Result);
+  respondToSOS: (sosId: nat) -> (Result);
+  revokeGuest: (guestId: text) -> (variant {
+                                     err: text;
+                                     ok;
+                                   });
+  setNightMode: (shiftId: nat, enabled: bool) -> (Result);
+  setUpiId: (upiId: text, qrImageUrl: opt text) -> (Result);
+  startShift: (apartmentId: ApartmentId, watchmanId: UserId) -> (Result);
+  submitFeedback: (rating: nat, comment: text, moduleName: text) -> (Result);
+  submitInAppFeedback: (feedbackType: text, message: text, screenshot:
+   opt blob) -> (variant {
+                   err: text;
+                   ok;
+                 });
+  submitPayment: (flatId: FlatId, apartmentId: ApartmentId, amount: nat,
+   month: nat, year: nat, utrNumber: text, screenshotUrl: text) -> (Result);
+  submitWatchmanIdDoc: (docUrl: text, docType: WatchmanIdType) -> (Result);
+  triggerSOS: (flatId: FlatId, apartmentId: ApartmentId, alertType:
+   AlertType) -> (Result);
+  unassignParking: (slotId: nat) -> (Result);
+  updateApartmentUpi: (apartmentId: ApartmentId, upiId: text, upiQrData:
+   text) -> (Result);
+  updateBillSubscription: (id: nat, name: text, amount: nat, dueDay: 
+   nat, category: BillCategory, isActive: bool) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  updateFacilityStatus: (apartmentId: ApartmentId, gate: GateStatus,
+   waterMotor: WaterMotorStatus, lift: LiftStatus, cleaning:
+   CleaningStatus) -> (Result);
+  updateFamilyContact: (id: nat, name: text, phone: text, relation: text,
+   note: text) -> (variant {
+                     err: text;
+                     ok: text;
+                   });
+  updateFamilyExpense: (id: nat, amount: nat, category:
+   FamilyExpenseCategory, description: text, date: Timestamp) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  updateFamilyTask: (id: nat, title: text, description: text, assignedTo:
+   text, dueDate: opt Timestamp, status: TaskStatus, priority:
+   TaskPriority) -> (variant {
+                       err: text;
+                       ok: text;
+                     });
+  updateGroceryItem: (id: nat, name: text, quantity: text, unit: text,
+   isPurchased: bool) -> (variant {
+                            err: text;
+                            ok: text;
+                          });
+  updateIssueStatus: (issueId: nat, status: IssueStatus) -> (Result);
+  updateTicketStatus: (ticketId: nat, status: TicketStatus) -> (Result);
+  validateInviteCode: (code: text) -> (Result_1) query;
+  verifyPayment: (paymentId: nat, approve: bool) -> (Result);
+}

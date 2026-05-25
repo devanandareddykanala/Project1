@@ -1,0 +1,25 @@
+{
+  "overview": "Develvyn — The Family Suite is a privacy-first apartment and family management PWA by Develvyn Technologies Pvt Ltd. It supports Apartment, Family, Watchman, and Founder Portal modes with Internet Identity biometric login, invite-based onboarding, DPDP-compliant consent flows, financial audit trails, and a real-time support ticket system.",
+  "features": [
+    "Internet Identity biometric login with auto-routing by role",
+    "Apartment Mode: maintenance tracking, visitor log, notice board, issue management, wallet with 2-admin approval",
+    "Family Mode: tasks, calendar, grocery list, expenses — completely private",
+    "Watchman Mode: icon-based duty screen, gate status toggles, 3-tap visitor log, shift handover",
+    "Founder Portal: health strip, subscription table, support tickets, team management",
+    "DPDP-compliant consent flows with active checkbox and right to withdraw",
+    "D-prefix invite code system (DAPT/DFAM/DWCH/DFND) with QR card fallback for watchman",
+    "Permanent financial audit trails with correction-entry-only policy"
+  ],
+  "category": "productivity",
+  "tags": [
+    "apartment-management",
+    "family-suite",
+    "indian-apartment",
+    "dpdp-compliance",
+    "internet-identity",
+    "maintenance-tracking",
+    "watchman-management",
+    "invite-codes"
+  ],
+  "last_updated": "2026-05-19T18:22:39.293Z"
+}

@@ -1,0 +1,702 @@
+// Version: 1.0.0
+type AlertType__165087795 = {#Fire; #Medical; #Other; #Safety};
+type ApartmentExpense__996947774 =
+  {
+    amount : Nat;
+    apartmentId : ApartmentId__175759221;
+    approvedBy : [UserId__536827905];
+    category : ExpenseCategory__65526872;
+    createdAt : Timestamp__520310395;
+    description : Text;
+    id : Nat;
+    payee : Text;
+    status : ExpenseStatus__104274241
+  };
+type ApartmentId__175759221 = ApartmentId__568007468;
+type ApartmentId__26271178 = ApartmentId__568007468;
+type ApartmentId__411126913 = ApartmentId__568007468;
+type ApartmentId__568007468 = Nat;
+type ApartmentId__658582458 = ApartmentId__568007468;
+type ApartmentId__682005072 = ApartmentId__568007468;
+type ApartmentId__693260632 = ApartmentId__568007468;
+type ApartmentId__756838427 = ApartmentId__568007468;
+type ApartmentId__77488947 = ApartmentId__568007468;
+type ApartmentId__865766965 = ApartmentId__568007468;
+type ApartmentId__923697006 = ApartmentId__568007468;
+type Apartment__554009727 =
+  {
+    address : Text;
+    createdAt : Timestamp__262882807;
+    id : ApartmentId__682005072;
+    inchargeId : ?UserId__454529981;
+    name : Text;
+    subscriptionStatus : SubscriptionStatus__273147603;
+    superAdminId : UserId__454529981;
+    upiId : Text;
+    upiQrData : Text
+  };
+type AppFeedback__563072521 =
+  {
+    comment : Text;
+    createdAt : Timestamp__76654774;
+    id : Nat;
+    moduleName : Text;
+    rating : Nat;
+    userId : UserId__959990074
+  };
+type BillCategory__1064104658 =
+  {#DTH; #Electricity; #Gas; #Internet; #Other; #Water};
+type BillSubscription__700257105 =
+  {
+    amount : Nat;
+    category : BillCategory__1064104658;
+    dueDay : Nat;
+    id : Nat;
+    isActive : Bool;
+    name : Text;
+    principalId : Principal
+  };
+type ChecklistEntry__797239157 = {completed : Bool; item : Text};
+type CleaningStatus__95603789 = {#Done; #Pending};
+type ConsentRecord__266988941 =
+  {
+    deviceInfo : Text;
+    generalConsent : Bool;
+    generalConsentAt : Int;
+    phone : Text;
+    principal : Principal;
+    watchmanAttendanceConsent : ?Bool;
+    watchmanGpsConsent : ?Bool;
+    watchmanPhotoIdConsent : ?Bool
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type DebitApprovalStatus__118973013 =
+  {#Approved; #Executed; #Pending; #Rejected};
+type DisputeNote__156349573 = {addedAt : Int; author : Text; note : Text};
+type DisputeRecord__521127142 =
+  {
+    category : Text;
+    createdAt : Int;
+    description : Text;
+    flatId : Text;
+    id : Text;
+    notes : [DisputeNote__156349573];
+    resolution : ?Text;
+    resolvedAt : ?Int;
+    status : Text;
+    tier : Nat
+  };
+type DocumentType__81880517 =
+  {#Aadhaar; #Insurance; #Other; #PAN; #Property; #Vehicle};
+type DocumentVaultEntry__141093881 =
+  {
+    docType : DocumentType__81880517;
+    fileUrl : Text;
+    id : Nat;
+    note : Text;
+    principalId : Principal;
+    title : Text;
+    uploadedAt : Timestamp__359236715
+  };
+type ExpenseCategory__65526872 =
+  {#Maintenance; #Other; #Repair; #Salary; #Utilities};
+type ExpenseStatus__104274241 = {#Approved; #Deducted; #Pending};
+type FacilityStatus__198618325 =
+  {
+    apartmentId : ApartmentId__865766965;
+    cleaningStatus : CleaningStatus__95603789;
+    gateStatus : GateStatus__1065524859;
+    lastUpdatedAt : Timestamp__1045136455;
+    lastUpdatedBy : UserId__692398628;
+    liftStatus : LiftStatus__510493862;
+    waterMotorStatus : WaterMotorStatus__385361625
+  };
+type FamilyCalendarEvent__321120695 =
+  {
+    date : Timestamp__359236715;
+    description : Text;
+    id : Nat;
+    principalId : Principal;
+    reminder : ?Timestamp__359236715;
+    time : Text;
+    title : Text
+  };
+type FamilyContact__75816894 =
+  {
+    id : Nat;
+    name : Text;
+    note : Text;
+    phone : Text;
+    principalId : Principal;
+    relation : Text
+  };
+type FamilyExpenseCategory__618130078 =
+  {#Bills; #Entertainment; #Food; #Grocery; #Medical; #Other; #Transport};
+type FamilyExpense__319077071 =
+  {
+    amount : Nat;
+    category : FamilyExpenseCategory__618130078;
+    createdAt : Timestamp__359236715;
+    date : Timestamp__359236715;
+    description : Text;
+    id : Nat;
+    principalId : Principal
+  };
+type FamilyReminder__951578686 =
+  {
+    date : Timestamp__359236715;
+    id : Nat;
+    isActive : Bool;
+    principalId : Principal;
+    repeatType : RepeatType__49789419;
+    time : Text;
+    title : Text
+  };
+type FamilyTask__62142645 =
+  {
+    assignedTo : Text;
+    createdAt : Timestamp__359236715;
+    description : Text;
+    dueDate : ?Timestamp__359236715;
+    id : Nat;
+    principalId : Principal;
+    priority : TaskPriority__1008068281;
+    status : TaskStatus__852579740;
+    title : Text
+  };
+type FeedbackRecord__920780146 =
+  {
+    feedbackType : Text;
+    id : Text;
+    message : Text;
+    screenshot : ?Blob;
+    submittedAt : Int;
+    userId : Text
+  };
+type FlatId__164937941 = FlatId__277538974;
+type FlatId__277538974 = Nat;
+type FlatId__4627633 = FlatId__277538974;
+type FlatId__562297333 = FlatId__277538974;
+type FlatId__615133052 = FlatId__277538974;
+type FlatId__667199459 = FlatId__277538974;
+type FlatId__981997099 = FlatId__277538974;
+type FlatStatus__147975757 = {#Occupied; #Vacant};
+type Flat__468960827 =
+  {
+    apartmentId : ApartmentId__682005072;
+    flatNumber : Text;
+    id : FlatId__981997099;
+    ownerId : ?UserId__454529981;
+    status : FlatStatus__147975757;
+    tenantId : ?UserId__454529981
+  };
+type GateStatus__1065524859 = {#Closed; #Locked; #Open};
+type GroceryItem__86762564 =
+  {
+    addedAt : Timestamp__359236715;
+    id : Nat;
+    isPurchased : Bool;
+    name : Text;
+    principalId : Principal;
+    quantity : Text;
+    unit : Text
+  };
+type GuestRecord__271909092 =
+  {
+    createdAt : Int;
+    expiresAt : Int;
+    flatId : Text;
+    id : Text;
+    isActive : Bool;
+    name : Text;
+    phone : Text
+  };
+type HandoverChecklist__935937398 =
+  {
+    gateKeyTransferred : Bool;
+    ledgerReviewed : Bool;
+    pendingIssuesNoted : Bool;
+    upiUpdated : Bool
+  };
+type HealthRecordType__440031777 =
+  {#Other; #Prescription; #Report; #Vaccination};
+type HealthRecord__459009132 =
+  {
+    date : Timestamp__359236715;
+    fileUrl : Text;
+    id : Nat;
+    memberName : Text;
+    note : Text;
+    principalId : Principal;
+    recordType : HealthRecordType__440031777;
+    title : Text
+  };
+type InchargeRecord__423989323 =
+  {
+    apartmentId : ApartmentId__682005072;
+    endDate : ?Timestamp__262882807;
+    handoverChecklist : HandoverChecklist__935937398;
+    handoverNotes : Text;
+    id : Nat;
+    isActive : Bool;
+    startDate : Timestamp__262882807;
+    userId : UserId__454529981
+  };
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type InviteRecord__848227830 =
+  {
+    apartmentId : ?ApartmentId__568007468;
+    createdAt : Int;
+    expiresAt : Int;
+    flatId : ?FlatId__277538974;
+    inviteLink : Text;
+    role : Role__300349085;
+    var used : Bool
+  };
+type IssueCategory__470297454 =
+  {#Common; #Electrical; #Maintenance; #Other; #Plumbing; #Security};
+type IssueStatus__118226348 = {#InProgress; #Open; #Resolved};
+type Issue__151947889 =
+  {
+    apartmentId : ApartmentId__923697006;
+    assignedTo : ?UserId__25389944;
+    category : IssueCategory__470297454;
+    createdAt : Timestamp__283879597;
+    description : Text;
+    flatId : FlatId__164937941;
+    id : Nat;
+    raisedBy : UserId__25389944;
+    resolvedAt : ?Timestamp__283879597;
+    status : IssueStatus__118226348;
+    title : Text;
+    updatedAt : Timestamp__283879597
+  };
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type LiftStatus__510493862 = {#Issue; #OK; #Offline};
+type MaintenancePayment__896407289 =
+  {
+    amount : Nat;
+    apartmentId : ApartmentId__26271178;
+    correctionNote : ?Text;
+    correctionOf : ?Nat;
+    createdAt : Timestamp__466931419;
+    flatId : FlatId__4627633;
+    id : Nat;
+    month : Nat;
+    screenshotUrl : Text;
+    status : PaymentStatus__343562832;
+    utrNumber : Text;
+    verifiedBy : ?UserId__342071797;
+    year : Nat
+  };
+type MoveOutChecklist__767041611 =
+  {
+    completedAt : ?Int;
+    flatId : Text;
+    initiatedAt : Int;
+    items : [ChecklistEntry__797239157]
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type Notice__313028600 =
+  {
+    acknowledgedBy : [UserId__448334656];
+    apartmentId : ApartmentId__756838427;
+    content : Text;
+    id : Nat;
+    postedAt : Timestamp__140574522;
+    postedBy : UserId__448334656;
+    priority : Priority__186587954;
+    title : Text
+  };
+type ParkingSlot__178420018 =
+  {
+    apartmentId : ApartmentId__693260632;
+    assignedAt : ?Timestamp__19917087;
+    assignedTo : ?FlatId__562297333;
+    id : Nat;
+    slotNumber : Text;
+    slotType : ParkingType__574770153
+  };
+type ParkingType__574770153 = {#Bike; #Both; #Car};
+type PaymentStatus__343562832 = {#Pending; #Rejected; #Verified};
+type PendingWatchman__740772073 =
+  {
+    apartmentId : Text;
+    docType : WatchmanIdType__810523156;
+    docUrl : Text;
+    name : Text;
+    phone : Text;
+    principal : Principal;
+    rejectionReason : ?Text;
+    status : WatchmanStatus__201137494;
+    submittedAt : Int;
+    uploadedAt : Int;
+    userId : Text
+  };
+type Priority__186587954 = {#Important; #Normal; #Urgent};
+type RepeatType__49789419 = {#Daily; #Monthly; #None; #Weekly};
+type Role__300349085 =
+  {
+    #CoFounder;
+    #Contractor;
+    #Employee;
+    #FamilyMember;
+    #FlatAdmin;
+    #Founder;
+    #Freelancer;
+    #Guest;
+    #RotatingIncharge;
+    #SuperAdmin;
+    #Watchman;
+    #WatchmanFamily
+  };
+type Role__490071529 = Role__300349085;
+type SOSAlert__371595243 =
+  {
+    alertType : AlertType__165087795;
+    apartmentId : ApartmentId__658582458;
+    falseAlarmReason : Text;
+    flatId : FlatId__667199459;
+    id : Nat;
+    isFalseAlarm : Bool;
+    resolutionNote : Text;
+    resolvedAt : ?Timestamp__25689544;
+    resolvedBy : ?UserId__786702053;
+    respondedAt : ?Timestamp__25689544;
+    respondedBy : ?UserId__786702053;
+    triggeredAt : Timestamp__25689544;
+    triggeredBy : UserId__786702053
+  };
+type ShiftHandoverChecklist__7749327 =
+  {gateChecked : Bool; liftChecked : Bool; motorChecked : Bool};
+type SlaMetadata__490751049 =
+  {
+    breached : Bool;
+    firstResponseAt : ?Timestamp__76654774;
+    firstResponseSla : Timestamp__76654774;
+    resolutionSla : Timestamp__76654774;
+    resolvedAt : ?Timestamp__76654774
+  };
+type SubscriptionStatus__273147603 =
+  {#Active; #GracePeriod; #Inactive; #Overdue; #Trial};
+type SupportTicket__460240397 =
+  {
+    apartmentId : ?ApartmentId__411126913;
+    assignedTo : ?UserId__959990074;
+    category : TicketCategory__809618352;
+    createdAt : Timestamp__76654774;
+    description : Text;
+    id : Nat;
+    priority : TicketPriority__344166733;
+    sla : SlaMetadata__490751049;
+    status : TicketStatus__840122062;
+    subject : Text;
+    ticketType : TicketType__737214959;
+    updatedAt : Timestamp__76654774;
+    userId : UserId__959990074
+  };
+type TaskPriority__1008068281 = {#High; #Low; #Medium};
+type TaskStatus__852579740 = {#Done; #Pending};
+type TicketCategory__809618352 =
+  {
+    #Account;
+    #Billing;
+    #Bug;
+    #Dispute;
+    #Feature;
+    #Other;
+    #Payment;
+    #Technical
+  };
+type TicketMessage__21352506 =
+  {
+    attachmentUrl : ?Text;
+    authorId : UserId__959990074;
+    createdAt : Timestamp__76654774;
+    id : Nat;
+    isInternal : Bool;
+    message : Text;
+    ticketId : Nat
+  };
+type TicketPriority__344166733 = {#Normal; #Urgent};
+type TicketStatus__840122062 =
+  {#InProgress; #Open; #Resolved; #WaitingForUser};
+type TicketType__737214959 = {#DisputeEscalation; #Support};
+type Timestamp__1045136455 = Timestamp__301639476;
+type Timestamp__140574522 = Timestamp__301639476;
+type Timestamp__19917087 = Timestamp__301639476;
+type Timestamp__25689544 = Timestamp__301639476;
+type Timestamp__262882807 = Timestamp__301639476;
+type Timestamp__283879597 = Timestamp__301639476;
+type Timestamp__301639476 = Int;
+type Timestamp__359236715 = Timestamp__301639476;
+type Timestamp__466931419 = Timestamp__301639476;
+type Timestamp__520310395 = Timestamp__301639476;
+type Timestamp__608627923 = Timestamp__301639476;
+type Timestamp__76654774 = Timestamp__301639476;
+type Timestamp__994004270 = Timestamp__301639476;
+type UserId__158757552 = Nat;
+type UserId__186220562 = UserId__158757552;
+type UserId__25389944 = UserId__158757552;
+type UserId__342071797 = UserId__158757552;
+type UserId__448334656 = UserId__158757552;
+type UserId__454529981 = UserId__158757552;
+type UserId__536827905 = UserId__158757552;
+type UserId__692398628 = UserId__158757552;
+type UserId__786702053 = UserId__158757552;
+type UserId__911210446 = UserId__158757552;
+type UserId__959990074 = UserId__158757552;
+type User__455962502 =
+  {
+    apartmentId : ?ApartmentId__568007468;
+    createdAt : Timestamp__608627923;
+    flatId : ?FlatId__277538974;
+    id : UserId__911210446;
+    isActive : Bool;
+    name : Text;
+    phone : Text;
+    principal : Principal;
+    role : Role__490071529
+  };
+type VisitorEntry__73690060 =
+  {
+    apartmentId : ApartmentId__77488947;
+    enteredAt : Timestamp__994004270;
+    enteredBy : UserId__186220562;
+    flatId : ?FlatId__615133052;
+    id : Nat;
+    note : Text;
+    visitorName : Text;
+    visitorType : VisitorType__587176979
+  };
+type VisitorType__587176979 = {#Delivery; #Guest; #Service; #Unknown};
+type WalletEntryType__1030546982 = {#Correction; #Credit; #Debit};
+type WalletEntry__1065063418 =
+  {
+    amount : Nat;
+    apartmentId : ApartmentId__26271178;
+    approvedBy : [UserId__342071797];
+    correctionNote : ?Text;
+    correctionOf : ?Nat;
+    createdAt : Timestamp__466931419;
+    entryType : WalletEntryType__1030546982;
+    flatId : ?FlatId__4627633;
+    id : Nat;
+    isPermanent : Bool;
+    purpose : Text;
+    status : DebitApprovalStatus__118973013;
+    utrNumber : ?Text
+  };
+type WatchmanFamilyMember__855569797 =
+  {id : Text; isActive : Bool; name : Text; phone : Text; watchmanId : Text};
+type WatchmanIdType__810523156 =
+  {#Aadhaar; #DrivingLicence; #Other; #Passport; #VoterID};
+type WatchmanShift__584730094 =
+  {
+    apartmentId : ApartmentId__865766965;
+    endedAt : ?Timestamp__1045136455;
+    handoverChecklist : ShiftHandoverChecklist__7749327;
+    handoverNote : Text;
+    id : Nat;
+    isNightMode : Bool;
+    relievedById : ?UserId__692398628;
+    startedAt : Timestamp__1045136455;
+    watchmanId : UserId__692398628
+  };
+type WatchmanStatus__201137494 = {#Approved; #Pending; #Rejected};
+type WaterMotorStatus__385361625 = {#Off; #On};
+actor {
+  stable alerts :
+    {
+      var root : Node__46230540<Nat, SOSAlert__371595243>;
+      var size : Nat__490723111
+    };
+  stable apartments :
+    {
+      var root : Node__46230540<ApartmentId__568007468, Apartment__554009727>;
+      var size : Nat__490723111
+    };
+  stable billSubscriptions :
+    {
+      var root : Node__46230540<Nat, BillSubscription__700257105>;
+      var size : Nat__490723111
+    };
+  stable calendarEvents :
+    {
+      var root : Node__46230540<Nat, FamilyCalendarEvent__321120695>;
+      var size : Nat__490723111
+    };
+  stable consentRecords :
+    {
+      var root : Node__46230540<Text, ConsentRecord__266988941>;
+      var size : Nat__490723111
+    };
+  stable disputes :
+    {
+      var root : Node__46230540<Text, DisputeRecord__521127142>;
+      var size : Nat__490723111
+    };
+  stable documentVault :
+    {
+      var root : Node__46230540<Nat, DocumentVaultEntry__141093881>;
+      var size : Nat__490723111
+    };
+  stable expenses :
+    {
+      var root : Node__46230540<Nat, ApartmentExpense__996947774>;
+      var size : Nat__490723111
+    };
+  stable facilityMap :
+    {
+      var root :
+        Node__46230540<ApartmentId__568007468, FacilityStatus__198618325>;
+      var size : Nat__490723111
+    };
+  stable familyContacts :
+    {
+      var root : Node__46230540<Nat, FamilyContact__75816894>;
+      var size : Nat__490723111
+    };
+  stable familyExpenses :
+    {
+      var root : Node__46230540<Nat, FamilyExpense__319077071>;
+      var size : Nat__490723111
+    };
+  stable familyReminders :
+    {
+      var root : Node__46230540<Nat, FamilyReminder__951578686>;
+      var size : Nat__490723111
+    };
+  stable familyTasks :
+    {
+      var root : Node__46230540<Nat, FamilyTask__62142645>;
+      var size : Nat__490723111
+    };
+  stable feedbacks :
+    {
+      var root : Node__46230540<Nat, AppFeedback__563072521>;
+      var size : Nat__490723111
+    };
+  stable flats :
+    {
+      var root : Node__46230540<FlatId__277538974, Flat__468960827>;
+      var size : Nat__490723111
+    };
+  stable founderState : {var principal : ?Principal};
+  stable groceryItems :
+    {
+      var root : Node__46230540<Nat, GroceryItem__86762564>;
+      var size : Nat__490723111
+    };
+  stable guests :
+    {
+      var root : Node__46230540<Text, GuestRecord__271909092>;
+      var size : Nat__490723111
+    };
+  stable healthRecords :
+    {
+      var root : Node__46230540<Nat, HealthRecord__459009132>;
+      var size : Nat__490723111
+    };
+  stable ids : {var next : Nat};
+  stable inappFeedbacks :
+    {
+      var root : Node__46230540<Text, FeedbackRecord__920780146>;
+      var size : Nat__490723111
+    };
+  stable inchargeRecords :
+    {
+      var root : Node__46230540<Nat, InchargeRecord__423989323>;
+      var size : Nat__490723111
+    };
+  stable inviteCodes :
+    {
+      var root : Node__46230540<Text, InviteRecord__848227830>;
+      var size : Nat__490723111
+    };
+  stable issues :
+    {
+      var root : Node__46230540<Nat, Issue__151947889>;
+      var size : Nat__490723111
+    };
+  stable moveOutChecklists :
+    {
+      var root : Node__46230540<Text, MoveOutChecklist__767041611>;
+      var size : Nat__490723111
+    };
+  stable msgIdCounter : {var next : Nat};
+  stable notices :
+    {
+      var root : Node__46230540<Nat, Notice__313028600>;
+      var size : Nat__490723111
+    };
+  stable parkingSlots :
+    {
+      var root : Node__46230540<Nat, ParkingSlot__178420018>;
+      var size : Nat__490723111
+    };
+  stable payments :
+    {
+      var root : Node__46230540<Nat, MaintenancePayment__896407289>;
+      var size : Nat__490723111
+    };
+  stable pendingWatchmen :
+    {
+      var root : Node__46230540<Text, PendingWatchman__740772073>;
+      var size : Nat__490723111
+    };
+  stable phoneIndex :
+    {var root : Node__46230540<Text, Principal>; var size : Nat__490723111};
+  stable shifts :
+    {
+      var root : Node__46230540<Nat, WatchmanShift__584730094>;
+      var size : Nat__490723111
+    };
+  stable ticketMessages :
+    {
+      var root : Node__46230540<Nat, TicketMessage__21352506>;
+      var size : Nat__490723111
+    };
+  stable tickets :
+    {
+      var root : Node__46230540<Nat, SupportTicket__460240397>;
+      var size : Nat__490723111
+    };
+  stable upiHistory :
+    {
+      var root :
+        Node__46230540<ApartmentId__568007468,
+                        [{
+                           archivedAt : ?Int;
+                           effectiveFrom : Int;
+                           qrImageUrl : ?Text;
+                           upiId : Text
+                         }]>;
+      var size : Nat__490723111
+    };
+  stable users :
+    {
+      var root : Node__46230540<Principal, User__455962502>;
+      var size : Nat__490723111
+    };
+  stable visitors :
+    {
+      var root : Node__46230540<Nat, VisitorEntry__73690060>;
+      var size : Nat__490723111
+    };
+  stable wallet :
+    {
+      var root : Node__46230540<Nat, WalletEntry__1065063418>;
+      var size : Nat__490723111
+    };
+  stable watchmanFamily :
+    {
+      var root : Node__46230540<Text, WatchmanFamilyMember__855569797>;
+      var size : Nat__490723111
+    }
+};
